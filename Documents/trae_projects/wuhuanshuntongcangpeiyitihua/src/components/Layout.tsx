@@ -1,20 +1,27 @@
-﻿import { Package, Home, Users, Truck, Settings, BarChart3, HelpCircle, LogOut } from 'lucide-react';
+﻿import { Package, Home, Users, Truck, Settings, BarChart3, HelpCircle, LogOut, Warehouse } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
   activeMenu: string;
+  onMenuChange?: (key: string) => void;
 }
 
-export const Layout = ({ children, activeMenu }: LayoutProps) => {
+export const Layout = ({ children, activeMenu, onMenuChange }: LayoutProps) => {
   const menuItems = [
     { key: 'home', label: '首页', icon: Home },
     { key: 'goods', label: '货物管理', icon: Package },
+    { key: 'store', label: '仓库管理', icon: Warehouse },
     { key: 'customer', label: '客户管理', icon: Users },
     { key: 'vehicle', label: '车辆管理', icon: Truck },
     { key: 'report', label: '统计报表', icon: BarChart3 },
     { key: 'settings', label: '系统设置', icon: Settings },
     { key: 'help', label: '帮助中心', icon: HelpCircle },
   ];
+
+  const getMenuLabel = (key: string) => {
+    const item = menuItems.find(i => i.key === key);
+    return item ? item.label : '';
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -29,6 +36,7 @@ export const Layout = ({ children, activeMenu }: LayoutProps) => {
           {menuItems.map(item => (
             <button
               key={item.key}
+              onClick={() => onMenuChange?.(item.key)}
               className={`w-full flex items-center gap-3 px-4 py-3 transition-colors ${
                 activeMenu === item.key
                   ? 'bg-primary-500 text-white'
@@ -50,7 +58,7 @@ export const Layout = ({ children, activeMenu }: LayoutProps) => {
       <main className="flex-1 overflow-auto">
         <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-6 shadow-sm">
           <div className="flex items-center gap-4">
-            <h1 className="text-lg font-semibold text-gray-800">货物管理</h1>
+            <h1 className="text-lg font-semibold text-gray-800">{getMenuLabel(activeMenu)}</h1>
             <span className="text-sm text-gray-500">基础信息管理</span>
           </div>
           <div className="flex items-center gap-4">
