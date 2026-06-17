@@ -103,8 +103,6 @@ export const StoreList = () => {
                 <option key={t} value={t}>{t}</option>
               ))}
             </select>
-          </div>
-          <div className="flex items-center gap-3">
             <button
               onClick={handleReset}
               className="px-4 py-2 text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors flex items-center gap-2"
@@ -112,12 +110,8 @@ export const StoreList = () => {
               <RefreshCw className="w-4 h-4" />
               重置
             </button>
-            <button
-              onClick={() => setPage(1)}
-              className="px-4 py-2 text-gray-600 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
-            >
-              查询
-            </button>
+          </div>
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setIsFormOpen(true)}
               className="px-4 py-2 text-white bg-primary-600 rounded-md hover:bg-primary-700 transition-colors flex items-center gap-2"
