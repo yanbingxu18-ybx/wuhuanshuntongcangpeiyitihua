@@ -3,6 +3,7 @@ import { Layout } from './components/Layout';
 import { GoodsList } from './pages/GoodsList';
 import { StoreList } from './pages/StoreList';
 import { StockAgeAlertList } from './pages/StockAgeAlertList';
+import { CustomerList } from './pages/CustomerList';
 
 function App() {
   const [activeMenu, setActiveMenu] = useState('goods');
@@ -13,6 +14,8 @@ function App() {
         return <StockAgeAlertList />;
       case 'store':
         return <StoreList />;
+      case 'customer':
+        return <CustomerList />;
       case 'goods':
       default:
         return <GoodsList />;
